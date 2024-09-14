@@ -1,0 +1,36 @@
+<div class="py-4">
+  <form [formGroup]="calculatorForm" (ngSubmit)="calculate()" class="p-fluid">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+      <div class="p-field mb-4">
+        <label for="loanAmount" class="font-semibold text-gray-500">Loan Amount ($)</label>
+        <p-inputNumber id="loanAmount" class="mt-4" formControlName="loanAmount" [showButtons]="true" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+      </div>
+      <div class="p-field mb-4">
+        <label for="interestRate" class="font-semibold text-gray-500">Interest Rate (%)</label>
+        <p-inputNumber id="interestRate" class="mt-4" formControlName="interestRate" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
+      </div>
+      <div class="p-field mb-4">
+        <label for="loanTermYears" class="font-semibold text-gray-500">Loan Term (Years)</label>
+        <p-inputNumber id="loanTermYears" class="mt-4" formControlName="loanTermYears" [showButtons]="true" [min]="1" [max]="50"></p-inputNumber>
+      </div>
+      <div class="p-field mb-4">
+        <label for="loanTermMonths" class="font-semibold text-gray-500">Loan Term (Months)</label>
+        <p-inputNumber id="loanTermMonths" class="mt-4" formControlName="loanTermMonths" [showButtons]="true" [min]="0" [max]="11"></p-inputNumber>
+      </div>
+    </div>
+    <div class="md:flex">
+      <p-button type="submit" label="Calculate" [disabled]="!calculatorForm.valid" class="w-40" styleClass="p-button-primary"></p-button>
+    </div>
+  </form>
+
+  <div *ngIf="result" class="mt-8">
+    <h2 class="text-2xl font-bold mb-4">Results</h2>
+    <p-panel header="Summary" styleClass="mb-4">
+      <p class="mb-2"><strong>Monthly Payment:</strong> {{ result.monthlyPayment | currency:'USD':'symbol':'1.2-2' }}</p>
+      <p class="mb-2"><strong>Total Interest:</strong> {{ result.totalInterest | currency:'USD':'symbol':'1.2-2' }}</p>
+    </p-panel>
+
+    <app-amortization-chart [schedule]="result.schedule"></app-amortization-chart>
+    <app-amortization-table [schedule]="result.schedule"></app-amortization-table>
+  </div>
+</div>

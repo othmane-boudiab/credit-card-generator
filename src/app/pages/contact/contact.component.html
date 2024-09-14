@@ -1,0 +1,28 @@
+<div class="contact">
+  <header class="h-40 mb-5 flex items-center" style="background-image: url('assets/images/02.jpg')" >
+    <div class="container-pro text-center">
+      <h1 class="text-3xl text-white font-bold mt-0 mb-4">Contact us</h1>
+    </div>
+  </header>
+
+<!--  <header class="bg-gray-100">-->
+<!--    <div class="text-2xl text-gray-500 poppins-semibold mx-auto mb-2 w-fit py-10">Contact us</div>-->
+<!--  </header>-->
+  <main class="my-16">
+    <form [formGroup]="contactForm" class="max-w-96 mx-auto">
+      <app-input-text formControlName="name" class="" [label]="'Name'" [placeholder]="'Name'"></app-input-text>
+      <br>
+      <app-input-text formControlName="email" class="" [label]="'Email'" [placeholder]="'Email'"></app-input-text>
+      <br>
+      <div class="flex flex-col">
+        <label class="mb-2">Message</label>
+        <textarea class="w-full min-h-32" placeholder="Message" rows="5" cols="30" pInputTextarea formControlName="message"></textarea>
+      </div>
+      <br>
+      <div class="flex justify-end">
+        <p-button label="Send Message" class="btn btn-primary rounded"></p-button>
+<!--        <button type="submit" class="btn btn-primary py-3 px-5 rounded">Send Message</button>-->
+      </div>
+    </form>
+  </main>
+</div>

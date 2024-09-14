@@ -1,0 +1,14 @@
+footer{
+  box-shadow: 0 -5px 5px -5px #d1d1d1;
+}
+
+
+.link{
+  color: #000;
+  text-decoration: none;
+}
+
+.link:hover{
+  color: #005ec7;
+  text-decoration: none;
+}

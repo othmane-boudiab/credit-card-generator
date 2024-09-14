@@ -1,0 +1,30 @@
+<div class="mt-8">
+  <p-panel header="Amortization Schedule">
+    <div class="flex justify-content-between mb-4">
+      <p-button (click)="toggleScheduleType()" [label]="isAnnual ? 'Show Monthly' : 'Show Annual'" styleClass="p-button-secondary"></p-button>
+    </div>
+
+    <p-table [value]="displaySchedule" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+             [rowsPerPageOptions]="[10,25,50]" styleClass="p-datatable-sm"
+             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>{{ isAnnual ? 'Year' : 'Month' }}</th>
+          <th>Payment</th>
+          <th>Principal</th>
+          <th>Interest</th>
+          <th>Balance</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item>
+        <tr>
+          <td>{{item.period}}</td>
+          <td>{{item.payment | currency:'USD':'symbol':'1.2-2'}}</td>
+          <td>{{item.principal | currency:'USD':'symbol':'1.2-2'}}</td>
+          <td>{{item.interest | currency:'USD':'symbol':'1.2-2'}}</td>
+          <td>{{item.balance | currency:'USD':'symbol':'1.2-2'}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-panel>
+</div>

@@ -1,0 +1,51 @@
+<nav class="navbar">
+  <div class="navbar-box py-2 container-pro">
+    <div routerLink="/" class="navbar-logo cursor-pointer">
+      <img src="assets/images/logo-achl.svg">
+    </div>
+    <ul class="navbar-nav hidden md:flex">
+      <li *ngFor="let item of menuItems" [class.has-submenu]="item.subMenu">
+        <a *ngIf="item.link; else notLink" [routerLink]="item.link">{{ item.name }}</a>
+        <ng-template #notLink>
+          {{ item.name }}
+          <i class="pi pi-plus" *ngIf="item.subMenu"></i>
+        </ng-template>
+        <div *ngIf="item.subMenu" class="megamenu">
+          <div *ngFor="let subItem of item.subMenu" class="megamenu-column">
+            <h4>{{ subItem.name }}</h4>
+            <a *ngFor="let subSubItem of subItem.subMenu" [routerLink]="subSubItem.link">
+              {{ subSubItem.name }}
+            </a>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="bg-transparent my-auto text-gray-700 cursor-pointer md:hidden"
+         (click)="sidebarVisible2 = true">
+      <i class="pi pi-bars text-2xl"></i>
+    </div>
+
+  </div>
+</nav>
+<p-sidebar [(visible)]="sidebarVisible2" position="right">
+  <ul class="list-none p-0 m-0 overflow-hidden">
+    <li>
+      <a pRipple [routerLink]="'/about'" class="flex align-items-center link-style cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+        <!--                <i class="pi pi-home mr-2"></i>-->
+        <span class="font-medium">About us</span>
+      </a>
+    </li>
+    <li>
+      <a pRipple [routerLink]="'/contact'" class="flex align-items-center link-style cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+        <!--                <i class="pi pi-users mr-2"></i>-->
+        <span class="font-medium">Contact us</span>
+      </a>
+    </li>
+    <li>
+      <a pRipple [routerLink]="'/terms-of-service'" class="flex align-items-center link-style cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+        <!--                <i class="pi pi-comments mr-2"></i>-->
+        <span class="font-medium">Terms of Service</span>
+      </a>
+    </li>
+  </ul>
+</p-sidebar>
